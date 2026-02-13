@@ -56,3 +56,50 @@ button:hover {
   color: #777;
   font-size: 14px;
 }
+.soEun {
+  margin-top: 18px;
+  font-size: 18px;
+  color: #3742fa;
+  font-weight: 500;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffa502;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 5px;
+  color: white;
+}
+
+.numbers {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff6b81;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input {
+  padding: 8px;
+  width: 250px;
+  margin-top: 10px;
+}
+
