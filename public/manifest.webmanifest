@@ -1,21 +1,21 @@
 {
   "name": "소은 로또 번호 생성기",
-  "short_name": "소은로또",
-  "description": "윤재를 위한 맞춤형 로또 번호 생성기 💖",
+  "short_name": "로또앱",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fffaf5",
-  "theme_color": "#f0627e",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6b81",
+  "description": "은이가 오늘도 좋은 번호만 뽑아줄게요 🍀",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
       "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
