@@ -1,21 +1,20 @@
 {
   "name": "소은 로또 번호 생성기",
-  "short_name": "로또생성기",
+  "short_name": "소은로또",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "description": "소은이 주는 오늘의 로또 번호",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "/icons/icon-512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
-  ],
-  "theme_color": "#ffffff"
+  ]
 }
