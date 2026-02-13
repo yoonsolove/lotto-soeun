@@ -1,10 +1,10 @@
 {
   "name": "소은 로또 번호 생성기",
-  "short_name": "소은로또",
+  "short_name": "로또소은",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#ff5e6c",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
