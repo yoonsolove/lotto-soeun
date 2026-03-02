@@ -191,5 +191,44 @@ function App() {
     </div>
   );
 }
-
+{
+  name: "1등 모드: 끝수 3개 허용",
+  check: (nums) => {
+    const endings = nums.map(n => n % 10);
+    const count = {};
+    endings.forEach(e => count[e] = (count[e] || 0) + 1);
+    return Object.values(count).every(v => v <= 3);
+  }
+},
+{
+  name: "1등 모드: 3연번만 제한",
+  check: (nums) => {
+    return !nums.some((_, i, arr) =>
+      i < 4 &&
+      arr[i] + 1 === arr[i + 1] &&
+      arr[i + 1] + 1 === arr[i + 2] &&
+      arr[i + 2] + 1 === arr[i + 3]
+    );
+  }
+},
+{
+  name: "1등 모드: 특정 구간 3개 허용",
+  check: (nums) => {
+    const groups = {
+      g1: nums.filter(n => n <= 10).length,
+      g2: nums.filter(n => n > 10 && n <= 20).length,
+      g3: nums.filter(n => n > 20 && n <= 30).length,
+      g4: nums.filter(n => n > 30 && n <= 40).length,
+      g5: nums.filter(n => n > 40).length
+    };
+    return Object.values(groups).some(v => v >= 3) || true;
+  }
+},
+{
+  name: "1등 모드: 고저 1:5 허용",
+  check: (nums) => {
+    const low = nums.filter(n => n <= 22).length;
+    return low >= 1 && low <= 5;
+  }
+}
 export default App;
