@@ -22,13 +22,13 @@ function App() {
     return seed / 4294967295;
   };
 
-  // 🔥 10개 필터
+  // 🔥 필터 리스트 (v2.2 일부 포함)
   const filterList = [
     {
-      name: "합계 100~170",
+      name: "합계 90~180",
       check: (nums) => {
         const sum = nums.reduce((a, b) => a + b, 0);
-        return sum >= 100 && sum <= 170;
+        return sum >= 90 && sum <= 180;
       }
     },
     {
@@ -46,16 +46,6 @@ function App() {
       }
     },
     {
-      name: "3연번 제외",
-      check: (nums) => {
-        return !nums.some((_, i, arr) =>
-          i < 4 &&
-          arr[i] + 1 === arr[i + 1] &&
-          arr[i + 1] + 1 === arr[i + 2]
-        );
-      }
-    },
-    {
       name: "끝수 중복 최대 2개",
       check: (nums) => {
         const endings = nums.map(n => n % 10);
@@ -65,36 +55,44 @@ function App() {
       }
     },
     {
-      name: "30번대 최대 3개",
-      check: (nums) => nums.filter(n => n >= 30 && n <= 39).length <= 3
-    },
-    {
-      name: "연번 2개 이하",
-      check: (nums) => {
-        let count = 0;
-        for (let i = 0; i < 5; i++) {
-          if (nums[i] + 1 === nums[i+1]) count++;
-        }
-        return count <= 2;
-      }
-    },
-    {
-      name: "1번~10번 최소 1개",
-      check: (nums) => nums.some(n => n <= 10)
-    },
-    {
-      name: "40번대 최대 2개",
-      check: (nums) => nums.filter(n => n >= 40).length <= 2
-    },
-    {
       name: "중복 조합 방지",
       check: (nums) => {
         const key = nums.join(',');
         return !history.some(h => h.join(',') === key);
       }
+    },
+
+    // 🔥 v2.2 강화 필터들
+    {
+      name: "1등 모드: 끝수 3개 허용",
+      check: (nums) => {
+        const endings = nums.map(n => n % 10);
+        const count = {};
+        endings.forEach(e => count[e] = (count[e] || 0) + 1);
+        return Object.values(count).every(v => v <= 3);
+      }
+    },
+    {
+      name: "1등 모드: 3연번만 제한",
+      check: (nums) => {
+        return !nums.some((_, i, arr) =>
+          i < 4 &&
+          arr[i] + 1 === arr[i + 1] &&
+          arr[i + 1] + 1 === arr[i + 2] &&
+          arr[i + 2] + 1 === arr[i + 3]
+        );
+      }
+    },
+    {
+      name: "1등 모드: 고저 1:5 허용",
+      check: (nums) => {
+        const low = nums.filter(n => n <= 22).length;
+        return low >= 1 && low <= 5;
+      }
     }
   ];
 
+  // 🔥 랜덤 필터 선택
   const pickRandomFilters = () => {
     const shuffled = [...filterList].sort(() => random() - 0.5);
     const count = random() > 0.5 ? 3 : 4;
@@ -150,7 +148,7 @@ function App() {
 
   return (
     <div className="App" style={{ padding: '30px', textAlign: 'center' }}>
-      <h1>🎯 소은 로또 번호 생성기 v2.1</h1>
+      <h1>🎯 소은 로또 번호 생성기 v2.2</h1>
 
       <input
         type="text"
@@ -191,44 +189,5 @@ function App() {
     </div>
   );
 }
-{
-  name: "1등 모드: 끝수 3개 허용",
-  check: (nums) => {
-    const endings = nums.map(n => n % 10);
-    const count = {};
-    endings.forEach(e => count[e] = (count[e] || 0) + 1);
-    return Object.values(count).every(v => v <= 3);
-  }
-},
-{
-  name: "1등 모드: 3연번만 제한",
-  check: (nums) => {
-    return !nums.some((_, i, arr) =>
-      i < 4 &&
-      arr[i] + 1 === arr[i + 1] &&
-      arr[i + 1] + 1 === arr[i + 2] &&
-      arr[i + 2] + 1 === arr[i + 3]
-    );
-  }
-},
-{
-  name: "1등 모드: 특정 구간 3개 허용",
-  check: (nums) => {
-    const groups = {
-      g1: nums.filter(n => n <= 10).length,
-      g2: nums.filter(n => n > 10 && n <= 20).length,
-      g3: nums.filter(n => n > 20 && n <= 30).length,
-      g4: nums.filter(n => n > 30 && n <= 40).length,
-      g5: nums.filter(n => n > 40).length
-    };
-    return Object.values(groups).some(v => v >= 3) || true;
-  }
-},
-{
-  name: "1등 모드: 고저 1:5 허용",
-  check: (nums) => {
-    const low = nums.filter(n => n <= 22).length;
-    return low >= 1 && low <= 5;
-  }
-}
+
 export default App;
